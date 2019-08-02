@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import ToDoContainer from './components/ToDoContainer'
 
 function App() {
   return (
     <div className="App">
-     
+      <h1>todo</h1>
+        <ToDoContainer/>
     </div>
   );
 }

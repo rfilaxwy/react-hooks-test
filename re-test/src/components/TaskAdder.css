@@ -1,0 +1,7 @@
+input[type=text] {
+    background-color: beige;
+    color: lightgrey;
+    width:auto;
+    font-size: 1.3em;
+    margin:3px;
+  }
