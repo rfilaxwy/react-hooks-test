@@ -28,7 +28,8 @@ export default class ToDoContainer extends Component{
 
     render(){
         const { tasks } = this.state;
-        let taskOutput = tasks.map((task)=> <NewTask key={task} taskName={task} delete={this.deleteTask}/>)
+        let taskOutput = tasks.map((task, index)=> <NewTask key={index.toString()} taskName={task} delete={this.deleteTask(index)}/>)
+        console.log(taskOutput)
         return(
             <div className='TodoCont'>
                 <TaskAdder 
