@@ -19,12 +19,13 @@ export default class ToDoContainer extends Component{
         this.setState({ tasks: tasks })
     }
 
-    deleteTask = (ind) => {
-        let { tasks } = this.state;
-        console.log(tasks)
-        let newTasks = tasks.splice(ind-1,1);
-        this.setState({tasks:newTasks})
-    }
+    // DELETE FUNCTION NOT WORKING
+    // deleteTask = (ind) => {
+    //     let { tasks } = this.state;
+    //     console.log(tasks)
+    //     let newTasks = tasks.splice(ind-1,1);
+    //     this.setState({tasks:newTasks})
+    // }
 
     render(){
 
@@ -35,7 +36,7 @@ export default class ToDoContainer extends Component{
                 />
                 <TaskOutput 
                     list={ this.state.tasks }
-                    deleteTask={ this.deleteTask }
+                    // deleteTask={ this.deleteTask }
                 />
             </div>
         )

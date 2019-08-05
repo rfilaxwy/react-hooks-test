@@ -9,26 +9,42 @@ export default class TaskAdder extends Component{
         }
     }
 
-    handleInput = (val) => {
-        
-        this.setState({newTask:val})
-    }
+    onChange = (e) => 
+        { 
+            this.setState({newTask:e.target.value})
+        }
 
-    clearTask = () => {
-        this.setState({newTask:''})
-    }
+    handleKeyDown = (e) => 
+        {
+            if(e.key === 'Enter')
+                {
+                    this.props.add(this.state.newTask)
+                    this.clearTask()
+                }
+        }
+
+    clearTask = () => 
+        {
+            this.setState({newTask:''})
+        }
 
     render(){
-       
         return (
             <div>
-                <input type='text' value={ this.state.newTask } onChange={(e)=>this.handleInput(e.target.value)} placeholder='Add new task'></input>
+                <input 
+                    type='text' 
+                    value={ this.state.newTask } 
+                    onChange={ (e)=>this.onChange(e) }
+                    onKeyDown={this.handleKeyDown} 
+                    placeholder='Add a new task'
+                />
                 <button 
-                    onClick={()=>{
-                        this.props.add(this.state.newTask)
-                        this.clearTask()
-                    } }>Add Task</button>
-                
+                    onClick={()=> 
+                        {
+                            this.props.add(this.state.newTask)
+                            this.clearTask()
+                        } }>
+                    Add Task</button>
             </div>
         )
     }
