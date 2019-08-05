@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import TaskAdder  from './TaskAdder';
 import './ToDoContainer.css'
 
-import NewTask from './NewTask'
+import TaskOutput from './TaskOutput';
+
 
 export default class ToDoContainer extends Component{
     constructor(){
@@ -18,24 +19,24 @@ export default class ToDoContainer extends Component{
         this.setState({ tasks: tasks })
     }
 
-    deleteTask = (key) => {
+    deleteTask = (ind) => {
         let { tasks } = this.state;
-        let index = tasks.indexOf(key);
-        let newTasks = tasks.splice(index-1,1);
-        
+        console.log(tasks)
+        let newTasks = tasks.splice(ind-1,1);
         this.setState({tasks:newTasks})
     }
 
     render(){
-        const { tasks } = this.state;
-        let taskOutput = tasks.map((task, index)=> <NewTask key={index.toString()} taskName={task} delete={this.deleteTask(index)}/>)
-        console.log(taskOutput)
+
         return(
             <div className='TodoCont'>
                 <TaskAdder 
-                    add = {this.handleNewTask}
+                    add = { this.handleNewTask }
                 />
-                { taskOutput }
+                <TaskOutput 
+                    list={ this.state.tasks }
+                    deleteTask={ this.deleteTask }
+                />
             </div>
         )
     }

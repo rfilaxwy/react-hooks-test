@@ -22,7 +22,7 @@ export default class TaskAdder extends Component{
        
         return (
             <div>
-                <input type='text' onChange={(e)=>this.handleInput(e.target.value)} placeholder='Add new task'></input>
+                <input type='text' value={ this.state.newTask } onChange={(e)=>this.handleInput(e.target.value)} placeholder='Add new task'></input>
                 <button 
                     onClick={()=>{
                         this.props.add(this.state.newTask)
