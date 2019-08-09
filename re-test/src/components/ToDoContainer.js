@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TaskAdder  from './TaskAdder';
 import './ToDoContainer.css'
+import NewTask from './NewTask';
 
-import TaskOutput from './TaskOutput';
 
 
 export default class ToDoContainer extends Component{
@@ -19,25 +19,28 @@ export default class ToDoContainer extends Component{
         this.setState({ tasks: tasks })
     }
 
-    // DELETE FUNCTION NOT WORKING
-    // deleteTask = (ind) => {
-    //     let { tasks } = this.state;
-    //     console.log(tasks)
-    //     let newTasks = tasks.splice(ind-1,1);
-    //     this.setState({tasks:newTasks})
-    // }
+    
+    deleteTaskHandler = (ind) => {
+        let tasks= this.state.tasks;
+        tasks.splice(ind,1);
+        this.setState({tasks:tasks})
+    }
 
     render(){
-
+        let tasksToShow = this.state.tasks.map((task, index) => {
+            return(
+                <NewTask 
+                    taskName={task}
+                    click={()=>this.deleteTaskHandler(index)}
+                    />
+            )
+        })
         return(
             <div className='TodoCont'>
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
-                <TaskOutput 
-                    list={ this.state.tasks }
-                    // deleteTask={ this.deleteTask }
-                />
+                {tasksToShow}
             </div>
         )
     }
