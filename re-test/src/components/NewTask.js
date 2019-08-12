@@ -5,7 +5,7 @@ const NewTask = (props) => {
     
     return(
         <div className='taskRow'>
-            <input type="checkbox"></input>{props.taskName}
+            <input type="checkbox"/>{props.taskName}
             <button onClick={props.click}>Delete task</button>
         </div>
     )

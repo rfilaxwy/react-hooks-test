@@ -9,29 +9,42 @@ export default class ToDoContainer extends Component{
     constructor(){
         super();
         this.state = {
-            tasks: ['laundry', 'dishes'],
+            tasks: [
+                {
+                    task:'laundry',
+                    id:'2019-08-12'
+                }, 
+                {
+                    task:'dishes',
+                    id:'2018-08-11'
+                }
+            ],
         }
     }
     
     handleNewTask = (e) => {
         let { tasks } = this.state;
-        tasks.push(e);
+        let timeStamp = Date.now();
+        let pushTask ={task:e, id:timeStamp}
+        tasks.push(pushTask);
         this.setState({ tasks: tasks })
     }
 
     
     deleteTaskHandler = (ind) => {
-        let tasks= this.state.tasks;
+        let tasks = [...this.state.tasks];
         tasks.splice(ind,1);
         this.setState({tasks:tasks})
     }
 
     render(){
-        let tasksToShow = this.state.tasks.map((task, index) => {
+        let tasksToShow = this.state.tasks.map((t) => {
+            
             return(
                 <NewTask 
-                    taskName={task}
-                    click={()=>this.deleteTaskHandler(index)}
+                    key={t.id}
+                    taskName={t.task}
+                    click={()=>this.deleteTaskHandler(t.id)}
                     />
             )
         })
