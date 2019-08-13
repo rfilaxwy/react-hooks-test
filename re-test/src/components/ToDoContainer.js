@@ -18,7 +18,7 @@ export default class ToDoContainer extends Component{
                 {
                     task:'dishes',
                     id:'2018-08-11',
-                    complete: false
+                    complete: true
                 }
             ],
         }
@@ -32,10 +32,15 @@ export default class ToDoContainer extends Component{
         this.setState({ tasks: tasks })
     }
 
-    completeTask = (ind) => {
+    completeTask = (id) => {
         let tasks = this.state.tasks;
-        let taskIndex = tasks.find(ind);
-        tasks[taskIndex].complete = !tasks.task.complete;
+        let taskIndex = tasks.findIndex(t=>{
+            return t.id === id
+        }
+            );
+            console.log(tasks[taskIndex].complete)
+        tasks[taskIndex].complete = !tasks[taskIndex].complete;
+        console.log(tasks, taskIndex)
         this.setState({tasks:tasks})
     }
     
@@ -47,12 +52,11 @@ export default class ToDoContainer extends Component{
 
     render(){
         let tasksToShow = this.state.tasks.map((t) => {
-            
             return(
                 <NewTask 
                     key={t.id}
                     taskName={t.task}
-                    complete={false}
+                    complete={t.complete}
                     completeTask={()=>this.completeTask(t.id)}
                     click={()=>this.deleteTaskHandler(t.id)}
                     />
