@@ -1,10 +1,39 @@
 .taskRow {
     display:flex;
     flex-direction: row;
+    justify-content: space-between;
     width:auto;
     margin:1px;
     height:auto;
     border: 1px solid grey;
-    padding:2px;
+    padding:0 10px 0 10px;
     padding-left: 4px;
+    align-items: center;
+}
+
+.checkBlock {
+    display:flex;
+    border: 1px solid rgba(24, 23, 23, 0.13);
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    justify-content: center;
+    color: rgba(58, 223, 58, 0.89);
+    align-items: center;
+}
+.checkBlock:hover {
+    border:1.5px solid  rgba(24, 23, 23, 0.23);
+}
+
+p {
+    color:rgb(117, 103, 103);
+    font-size: 1.26em;
+    font-weight: 400;
+    
+}
+.FaTimes {
+    color: rgba(128, 128, 128, 0.432);
+}
+.FaTimes:hover {
+    color: rgba(128, 128, 128, 0.959);
 }
