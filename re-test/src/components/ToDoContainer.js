@@ -66,7 +66,7 @@ export default class ToDoContainer extends Component{
             )
         })
         let totalTasks = this.state.tasks.length;
-        let completeTasks = tasks.filter(task => task.complete)
+        let completeTasks = tasks.filter(task => task.complete).length;
         return(
             <div className='TodoCont'>
                 <TaskAdder 
@@ -75,7 +75,7 @@ export default class ToDoContainer extends Component{
                 {tasksToShow}
                 <div className='foot'>
                     <p>Total Tasks: {totalTasks}</p>
-                    <p>Complete Tasks: {completeTasks.length}</p>
+                    <p>Complete Tasks: {completeTasks}</p>
                 </div>
             </div>
         )
