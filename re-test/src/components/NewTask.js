@@ -10,7 +10,7 @@ const NewTask = (props) => {
     return(
         <div className='taskRow'>
              {checkBox}{taskOutput}
-            <FaTimes className='FaTimes' onClick={props.click} />
+            <FaTimes className='FaTimes' onClick={()=>props.click(props.ind)} />
         </div>
     )
 }

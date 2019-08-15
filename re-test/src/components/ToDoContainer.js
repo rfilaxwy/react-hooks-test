@@ -27,7 +27,7 @@ export default class ToDoContainer extends Component{
     handleNewTask = (e) => {
         let { tasks } = this.state;
         let timeStamp = Date.now();
-        let pushTask ={task:e, id:timeStamp}
+        let pushTask ={task:e, id:timeStamp, complete:false}
         tasks.push(pushTask);
         this.setState({ tasks: tasks })
     }
@@ -44,15 +44,20 @@ export default class ToDoContainer extends Component{
     
     deleteTaskHandler = (ind) => {
         let tasks = [...this.state.tasks];
-        tasks.splice(ind,1);
+        let delIndex = tasks.findIndex((i)=>{
+            return i.id === ind
+        });
+        tasks.splice(delIndex,1);
         this.setState({tasks:tasks})
     }
 
     render(){
-        let tasksToShow = this.state.tasks.map((t) => {
+        let tasks =this.state.tasks;
+        let tasksToShow = tasks.map((t) => {
             return(
                 <NewTask 
                     key={t.id}
+                    ind={t.id}
                     taskName={t.task}
                     complete={t.complete}
                     completeTask={()=>this.completeTask(t.id)}
@@ -60,12 +65,18 @@ export default class ToDoContainer extends Component{
                     />
             )
         })
+        let totalTasks = this.state.tasks.length;
+        let completeTasks = tasks.filter(task => task.complete)
         return(
             <div className='TodoCont'>
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
                 {tasksToShow}
+                <div className='foot'>
+                    <p>Total Tasks: {totalTasks}</p>
+                    <p>Complete Tasks: {completeTasks.length}</p>
+                </div>
             </div>
         )
     }
