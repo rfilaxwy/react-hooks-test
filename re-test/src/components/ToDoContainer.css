@@ -1,11 +1,13 @@
 .TodoCont {
     margin:auto;
-    padding:0;
+    padding:4px;
     height:auto;
     width:40%;
     background-color: white;
     border:1px solid gray;
+    border-radius: 3px;
     display:flex;
+    box-shadow:3px 2px 2px;
     flex-direction: column;
     text-align: center;
     justify-content: center;

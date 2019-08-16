@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import TaskAdder  from './TaskAdder';
 import './ToDoContainer.css'
 import NewTask from './NewTask';
+import Radium, { StyleRoot } from 'radium';
 
 
-
-export default class ToDoContainer extends Component{
+ class ToDoContainer extends Component{
     constructor(){
         super();
         this.state = {
@@ -52,6 +52,11 @@ export default class ToDoContainer extends Component{
     }
 
     render(){
+        let style = {
+            '@media (max-width: 700px)': {
+                width: '100%',
+            }
+        }
         let tasks =this.state.tasks;
         let tasksToShow = tasks.map((t) => {
             return(
@@ -68,7 +73,8 @@ export default class ToDoContainer extends Component{
         let totalTasks = this.state.tasks.length;
         let completeTasks = tasks.filter(task => task.complete).length;
         return(
-            <div className='TodoCont'>
+            
+            <div className='TodoCont' style={style}>
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
@@ -78,6 +84,8 @@ export default class ToDoContainer extends Component{
                     <p>Complete Tasks: {completeTasks}</p>
                 </div>
             </div>
+            
         )
     }
 }
+export default Radium(ToDoContainer);
