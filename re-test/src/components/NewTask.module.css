@@ -37,3 +37,6 @@ p {
 .FaTimes:hover {
     color: rgba(128, 128, 128, 0.959);
 }
+.task:hover{
+    font-weight: 300;
+}

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import TaskAdder  from './TaskAdder';
-import './ToDoContainer.css'
+import classes from './ToDoContainer.module.css'
 import NewTask from './NewTask';
-import Radium, { StyleRoot } from 'radium';
-
 
  class ToDoContainer extends Component{
     constructor(){
@@ -74,12 +72,12 @@ import Radium, { StyleRoot } from 'radium';
         let completeTasks = tasks.filter(task => task.complete).length;
         return(
             
-            <div className='TodoCont' style={style}>
+            <div className={classes.TodoCont} style={style}>
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
                 {tasksToShow}
-                <div className='foot'>
+                <div className={classes.foot}>
                     <p>Total Tasks: {totalTasks}</p>
                     <p>Complete Tasks: {completeTasks}</p>
                 </div>
@@ -88,4 +86,4 @@ import Radium, { StyleRoot } from 'radium';
         )
     }
 }
-export default Radium(ToDoContainer);
+export default ToDoContainer;

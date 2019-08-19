@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './TaskAdder.css';
+import classes from './TaskAdder.module.css';
 
 import Button from 'react-bootstrap/Button';
 
@@ -32,7 +32,7 @@ export default class TaskAdder extends Component{
 
     render(){
         return (
-            <div className='header'>
+            <div className={classes.header}>
                 <input 
                     type='text' 
                     value={ this.state.newTask } 
@@ -41,7 +41,7 @@ export default class TaskAdder extends Component{
                     placeholder='Add a new task'
                 />
                 <Button 
-                    className='butt'
+                    className={classes.butt}
                     variant="primary"
                     onClick={()=> 
                         {

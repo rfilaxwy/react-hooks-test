@@ -1,17 +1,14 @@
 import React from 'react';
-import './App.css';
-import Radium, { StyleRoot } from 'radium'
+import classes from './App.module.css';
 import ToDoContainer from './components/ToDoContainer'
 
 function App() {
   return (
-    <StyleRoot>
-    <div className="App">
+    <div className={classes.App}>
       <h1>todo</h1>
         <ToDoContainer/>
     </div>
-    </StyleRoot>
   );
 }
 
-export default Radium(App);
+export default App;
