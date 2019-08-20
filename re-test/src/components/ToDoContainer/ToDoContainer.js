@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import TaskAdder  from './TaskAdder';
+import ErrorBoundry from '../ErrorBoundry/ErrorBoundry';
+import NewTask from '../NewTask/NewTask';
+import TaskAdder  from '../TaskAdder/TaskAdder';
+
+
+
 import classes from './ToDoContainer.module.css'
-import NewTask from './NewTask';
 
  class ToDoContainer extends Component{
     constructor(){
@@ -50,29 +54,27 @@ import NewTask from './NewTask';
     }
 
     render(){
-        let style = {
-            '@media (max-width: 700px)': {
-                width: '100%',
-            }
-        }
+        
         let tasks =this.state.tasks;
         let tasksToShow = tasks.map((t) => {
             return(
-                <NewTask 
-                    key={t.id}
-                    ind={t.id}
-                    taskName={t.task}
-                    complete={t.complete}
-                    completeTask={()=>this.completeTask(t.id)}
-                    click={()=>this.deleteTaskHandler(t.id)}
-                    />
+                <ErrorBoundry key={t.id}>
+                    <NewTask 
+                        
+                        ind={t.id}
+                        taskName={t.task}
+                        complete={t.complete}
+                        completeTask={()=>this.completeTask(t.id)}
+                        click={()=>this.deleteTaskHandler(t.id)}
+                        />
+                </ErrorBoundry>
             )
         })
         let totalTasks = this.state.tasks.length;
         let completeTasks = tasks.filter(task => task.complete).length;
         return(
             
-            <div className={classes.TodoCont} style={style}>
+            <div className={classes.TodoCont}>
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
