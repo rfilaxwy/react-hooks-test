@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ErrorBoundry from '../ErrorBoundry/ErrorBoundry';
 import NewTask from '../NewTask/NewTask';
 import TaskAdder  from '../TaskAdder/TaskAdder';
-
+import TaskList from '../TaskList/TaskList';
 
 
 import classes from './ToDoContainer.module.css'
@@ -56,20 +56,20 @@ import classes from './ToDoContainer.module.css'
     render(){
         
         let tasks =this.state.tasks;
-        let tasksToShow = tasks.map((t) => {
-            return(
-                <ErrorBoundry key={t.id}>
-                    <NewTask 
+        // let tasksToShow = tasks.map((t) => {
+        //     return(
+        //         <ErrorBoundry key={t.id}>
+        //             <NewTask 
+        //                 ind={t.id}
+        //                 taskName={t.task}
+        //                 complete={t.complete}
+        //                 completeTask={()=>this.completeTask(t.id)}
+        //                 click={()=>this.deleteTaskHandler(t.id)}
                         
-                        ind={t.id}
-                        taskName={t.task}
-                        complete={t.complete}
-                        completeTask={()=>this.completeTask(t.id)}
-                        click={()=>this.deleteTaskHandler(t.id)}
-                        />
-                </ErrorBoundry>
-            )
-        })
+        //                 />
+        //         </ErrorBoundry>
+        //     )
+        // })
         let totalTasks = this.state.tasks.length;
         let completeTasks = tasks.filter(task => task.complete).length;
         return(
@@ -78,7 +78,11 @@ import classes from './ToDoContainer.module.css'
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
-                {tasksToShow}
+                <TaskList
+                    tasks={this.state.tasks}
+                    completeTask={this.completeTask}
+                    click={this.deleteTaskHandler}
+                />
                 <div className={classes.foot}>
                     <p>Total Tasks: {totalTasks}</p>
                     <p>Complete Tasks: {completeTasks}</p>
