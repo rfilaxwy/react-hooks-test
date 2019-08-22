@@ -3,7 +3,6 @@ import ErrorBoundry from '../ErrorBoundry/ErrorBoundry';
 import NewTask from '../NewTask/NewTask';
 
 const TaskList = (props) => {
-    console.log(props)
     let { tasks } = props;
     let tasksToShow = tasks.map((t) => {
         return(
