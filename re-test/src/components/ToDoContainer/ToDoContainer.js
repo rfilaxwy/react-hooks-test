@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TaskAdder  from '../TaskAdder/TaskAdder';
 import TaskList from '../TaskList/TaskList';
 import TaskStatusBar from '../TaskStatusBar/TaskStatusBar';
-import WeatherContainter from '../WeatherContainer/WeatherContainer';
+
 
 import classes from './ToDoContainer.module.css'
 
@@ -65,9 +65,8 @@ import classes from './ToDoContainer.module.css'
         let totalTasks = this.state.tasks.length;
         
         return(
-            
             <div className={classes.TodoCont}>
-                <WeatherContainter />
+                
                 <TaskAdder 
                     add = { this.handleNewTask }
                 />
@@ -81,8 +80,8 @@ import classes from './ToDoContainer.module.css'
                     completeTasks={completeTasks.length}
                 />
                 <button onClick={()=>this.handleDisplay('a')}>Show Active</button>
-                <button  onClick={()=>this.handleDisplay('b')}>Show Complete</button>
-                <button  onClick={()=>this.handleDisplay('c')}>Show All</button>
+                <button onClick={()=>this.handleDisplay('b')}>Show Complete</button>
+                <button onClick={()=>this.handleDisplay('c')}>Show All</button>
 
             </div>
             

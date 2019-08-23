@@ -1,0 +1,14 @@
+.weatherBar {
+    display:flex;
+    justify-content: flex-start;
+    padding: 5px;
+    
+}
+.weatherBar > p {
+    background-color: white;
+    padding:5px;
+    color:rgb(112, 102, 102);
+    border: 1px solid white;
+    border-radius: 2px;
+    box-shadow: 2px 2px 1px;
+}
