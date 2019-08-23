@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TaskAdder  from '../TaskAdder/TaskAdder';
 import TaskList from '../TaskList/TaskList';
-
+import TaskStatusBar from '../TaskStatusBar/TaskStatusBar';
 
 import classes from './ToDoContainer.module.css'
 
@@ -21,6 +21,7 @@ import classes from './ToDoContainer.module.css'
                     complete: false
                 }
             ],
+            display:''
         }
     }
     
@@ -30,6 +31,10 @@ import classes from './ToDoContainer.module.css'
         let pushTask ={task:e, id:timeStamp, complete:false}
         tasks.push(pushTask);
         this.setState({ tasks: tasks })
+    }
+
+    handleDisplay = (e) => {
+        this.setState({display:e})
     }
 
     completeTask = (id) => {
@@ -54,8 +59,10 @@ import classes from './ToDoContainer.module.css'
     render(){
         
         let tasks =this.state.tasks;
+        let completeTasks = tasks.filter(task => task.complete);
+        let displayTasks = this.state.display === 'a' ? tasks.filter(task => task.complete===false): this.state.display === 'b' ? completeTasks:tasks;
         let totalTasks = this.state.tasks.length;
-        let completeTasks = tasks.filter(task => task.complete).length;
+        
         return(
             
             <div className={classes.TodoCont}>
@@ -63,14 +70,18 @@ import classes from './ToDoContainer.module.css'
                     add = { this.handleNewTask }
                 />
                 <TaskList
-                    tasks={this.state.tasks}
+                    tasks={displayTasks}
                     completeTask={this.completeTask}
                     click={this.deleteTaskHandler}
                 />
-                <div className={classes.foot}>
-                    <p>Total Tasks: {totalTasks}</p>
-                    <p>Complete Tasks: {completeTasks}</p>
-                </div>
+                <TaskStatusBar
+                    totalTasks={totalTasks}
+                    completeTasks={completeTasks.length}
+                />
+                <button onClick={()=>this.handleDisplay('a')}>Show Active</button>
+                <button  onClick={()=>this.handleDisplay('b')}>Show Complete</button>
+                <button  onClick={()=>this.handleDisplay('b')}>Show All</button>
+
             </div>
             
         )
