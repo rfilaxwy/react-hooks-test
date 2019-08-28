@@ -7,35 +7,35 @@ require('dotenv').config();
 export default class WeatherContainer extends Component{
     constructor(props){
         super(props)
-        
+        this.state ={
+            weatherCels: null
+        }
     }
 
-    state = {
-        weatherCels: null
-    }
+    // state = {
+    //     weatherCels: null
+    // }
 
-    static getDerivedStateFromProps(props, state){
-        return state;
-    }
+    // static getDerivedStateFromProps(props, state){
+    //     return state;
+    // }
 
     componentDidMount(){
         // axios.post('url of the cloudflare worker', {request.body})
-        let weathapi = process.env.WEATHERAPI
-        // let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&APPID=${weathapi}` 
         let localWeather;
-        axios.get(`).then((res)=>{
+        axios.get('/api/weather').then((res)=>{
             localWeather = Math.floor(res.data.main.temp - 273)
             this.setState({
-            weather: localWeather
+            weatherCels: localWeather
         })
-        })
-        
+        }) 
     }
 
+ 
            
 
     render(){
-        let weatherDisplay = this.state.weatherCels === null ? 'offline':this.state.weather;
+        let weatherDisplay = this.state.weatherCels === null ? 'offline':this.state.weatherCels;
         return(
             <div className={classes.weatherBar}>
                 <p>{weatherDisplay} celsius</p>

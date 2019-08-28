@@ -10,24 +10,27 @@ const   express = require('express'),
 require('dotenv').config();
 app.use(cors());
 app.use(bodyParser.json());
-
+const port = process.env.PORT || 8888;
 
 const weathapi = process.env.WEATHERAPI
 const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&APPID=${weathapi}`
-const port = process.env.PORT || 8888;
 
-app.listen(port);
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.listen(port, ()=> console.log(`Listening on port ${port}`));
 
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-})
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/weather', (req, res)=>{
-    let data;
-    axios.get(weatherUrl).then(res=>{
-        data = res.data ? res.data.main.temp:null;
-    })
-    res.send(data)
-}).catch(err=> err.send (new Error('Could not find local weather',{status:500})))
+// app.get('*', (req,res) => {
+//     res.sendFile(path.join(__dirname+'/client/build/index.html'));
+// })
+
+app.get('/api/weather', (req, res)=>{
+   getWeather()
+    .then(response => res.status(200).send(response))
+   })
+
+const getWeather = async () => {
+    let weatherData = await axios.get(weatherUrl);
+    let { data } = weatherData;
+    return data;
+}
