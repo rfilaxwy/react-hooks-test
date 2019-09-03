@@ -29,6 +29,8 @@ app.get('/api/weather', (req, res)=>{
     .then(response => res.status(200).send(response))
    })
 
+
+   //Switch this to use FETCH API
 const getWeather = async () => {
     let weatherData = await axios.get(weatherUrl);
     let { data } = weatherData;

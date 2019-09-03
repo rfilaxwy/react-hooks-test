@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import classes from './WeatherContainer.module.css';
 
 require('dotenv').config();
@@ -20,18 +19,26 @@ export default class WeatherContainer extends Component{
     //     return state;
     // }
 
-    componentDidMount(){
-        // axios.post('url of the cloudflare worker', {request.body})
-        let localWeather;
-        axios.get('/api/weather').then((res)=>{
-            localWeather = Math.floor(res.data.main.temp - 273)
-            this.setState({
-            weatherCels: localWeather
-        })
-        }) 
-    }
+    // componentDidMount(){
+    //     // axios.post('url of the cloudflare worker', {request.body})
+    //     let localWeather;
+    //     axios.get('/api/weather').then((res)=>{
+    //         localWeather = Math.floor(res.data.main.temp - 273)
+    //         this.setState({
+    //         weatherCels: localWeather
+    //     })
+    //     }) 
+    // }
 
- 
+    componentDidMount(){
+        let localWeather;
+        fetch('/api/weather')
+            .then(data=> {return data.json()})
+            .then(res=> { 
+                localWeather = Math.floor(res.main.temp - 273)
+                this.setState({weatherCels: localWeather})
+             })
+    }
            
 
     render(){
