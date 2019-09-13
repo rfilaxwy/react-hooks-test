@@ -38,6 +38,10 @@ export default class WeatherContainer extends Component{
                 localWeather = Math.floor(res.main.temp - 273)
                 this.setState({weatherCels: localWeather})
              })
+             .catch((err)=>{
+             console.log(err);   
+             this.setState({weatherCels: 'unknown'})
+            })
     }
            
 

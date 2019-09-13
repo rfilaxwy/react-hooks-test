@@ -30,9 +30,19 @@ app.get('/api/weather', (req, res)=>{
    })
 
 
-   //Switch this to use FETCH API
+//    Switch this to use FETCH API
 const getWeather = async () => {
     let weatherData = await axios.get(weatherUrl);
     let { data } = weatherData;
     return data;
 }
+
+// const getWeather = async () => {
+//     try {
+//         let weatherData = await fetch(weatherUrl);
+//         let  { data } = weatherData;
+//         return data;
+//     } catch(err){
+//         console.error(err)
+//     }
+// }

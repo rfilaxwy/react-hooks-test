@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TaskAdder  from '../TaskAdder/TaskAdder';
 import TaskList from '../TaskList/TaskList';
 import TaskStatusBar from '../TaskStatusBar/TaskStatusBar';
+import Button from 'react-bootstrap/Button';
 
 
 import classes from './ToDoContainer.module.css'
@@ -79,9 +80,9 @@ import classes from './ToDoContainer.module.css'
                     totalTasks={totalTasks}
                     completeTasks={completeTasks.length}
                 />
-                <button onClick={()=>this.handleDisplay('a')}>Show Active</button>
-                <button onClick={()=>this.handleDisplay('b')}>Show Complete</button>
-                <button onClick={()=>this.handleDisplay('c')}>Show All</button>
+                <Button className={classes.button} onClick={()=>this.handleDisplay('a')}>Show Active</Button>
+                <Button className={classes.button} onClick={()=>this.handleDisplay('b')}>Show Complete</Button>
+                <Button className={classes.button} onClick={()=>this.handleDisplay('c')}>Show All</Button>
 
             </div>
             
