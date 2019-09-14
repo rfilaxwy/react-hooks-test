@@ -33,8 +33,8 @@ export default class WeatherContainer extends Component{
     componentDidMount(){
         let localWeather;
         fetch('/api/weather')
-            .then(data=> {return data.json()})
-            .then(res=> { 
+            .then(data => {return data.json()})
+            .then(res => { 
                 localWeather = Math.floor(res.main.temp - 273)
                 this.setState({weatherCels: localWeather})
              })
